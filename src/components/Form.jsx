@@ -1,25 +1,30 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 
-const Form = ({ onChange, data, onSubmit }) => {
+const Form = () => {
+  const [data, setData] = useState(null);
   const form = useRef(null);
   if (!data) {
-    data = {};
+    setData({});
   }
-  // const [data,setData] = useState({})
-  // const handdleChange=(e)=>{
-  //   setData({
-  //     ...data,
-  //     [e.target.name]:e.target.value
-  //   })
-  //   console.log('datos escritos:',data)
-  // }
-  // const handdleSubmit = (e) => {
-  //   e.preventDefault();
-  // };
+  const handdleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+    console.log("datos escritos:", data);
+  };
+  const handdleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="">
-      <form className="" ref={form} onChange={onChange} onSubmit={onSubmit}>
+      <form
+        className=""
+        ref={form}
+        onChange={handdleChange}
+        onSubmit={handdleSubmit}
+      >
         <div className="flex flex-col w-full mb-3">
           <label htmlFor="nombre" className="pb-2 self-start text-black">
             Nombre

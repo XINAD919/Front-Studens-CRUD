@@ -1,25 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 const StudentList = ({ students }) => {
-  const onClick = () => {
-    
-  };
   return (
-    <div>
+    <div className="grid md:grid-cols-3 gap-3">
       {students.map((student) => (
-        <>
+        <Link key={student._id} to={`/student/${student._id}/edit`}>
           <div className="flex flex-col justify-center rounded-md shadow-md mb-3 h-32 px-2 relative">
-            <i
-              onClick={onClick()}
-              className="fa-solid fa-trash absolute right-5 top-5 cursor-pointer"
-            />
-            <Link to={`/student/${student._id}/edit`} key={student._id}>
-              <h2>Nombre: {student.nombre}</h2>
-              <p>Correo: {student.correo}</p>
-              <p>telefono: {student.tel}</p>
-            </Link>
+            <h2>Nombre: {student.nombre}</h2>
+            <p>Correo: {student.correo}</p>
+            <p>telefono: {student.tel}</p>
           </div>
-        </>
+        </Link>
       ))}
     </div>
   );

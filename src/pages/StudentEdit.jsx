@@ -1,14 +1,15 @@
 import React, { useRef, useState, useEffect } from "react";
 import Back from "../components/Back";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import Form from "../components/Form";
-import { getStudent, updateStudent } from "../utils/api";
-import { toast } from "react-toastify";
+import { useParams, useNavigate } from "react-router-dom";
+import { getStudent, updateStudent, deleteStudent } from "../utils/api";
+import { Tooltip, Dialog } from "@material-ui/core";
+
 const StudentEdit = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
   const form = useRef(null);
   const navigate = useNavigate();
+  const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
     const fetchStudent = async () => {
@@ -49,9 +50,29 @@ const StudentEdit = () => {
     );
   };
 
+  const onClick = async () => {
+    await deleteStudent(
+      id,
+      (response) => {
+        console.log(response.data);
+        navigate("/student-list");
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
+  };
   return (
     <>
-      <Back url={"/student-list"} />
+      <div className="flex justify-between px-4">
+        <Back url={"/student-list"} />
+        <Tooltip title="Eliminar" arrow>
+          <i
+            onClick={() => setOpenDialog(true)}
+            className="fa-solid fa-trash  cursor-pointer"
+          />
+        </Tooltip>
+      </div>
       <div className="container mx-auto">
         <form
           className=""
@@ -60,7 +81,9 @@ const StudentEdit = () => {
           onSubmit={handdleSubmit}
         >
           <div className="flex flex-col w-full mb-3">
-            <h1 className=" self-center text-xl text-semibold">Editar Estudiante</h1>
+            <h1 className=" self-center text-xl text-semibold">
+              Editar Estudiante
+            </h1>
             <label htmlFor="nombre" className="pb-2 self-start text-black">
               Nombre
             </label>
@@ -116,12 +139,33 @@ const StudentEdit = () => {
               maxLength="14"
               required
             />
-          <button className="mt-4 rounded-md bg-green-500 text-white px-2 py-1 self-center">
-            Submit
-          </button>
+            <button className="mt-4 rounded-md bg-green-500 text-white px-2 py-1 self-center">
+              Submit
+            </button>
           </div>
         </form>
       </div>
+      <Dialog open={openDialog}>
+        <div className="p-8 flex flex-col">
+          <h1 className="text-gray-900 text-2xl font-bold">
+            ¿Está seguro de querer eliminar a {data.nombre}?
+          </h1>
+          <div className="d-flex w-full items-center justify-center my-4">
+            <button
+              onClick={() => onClick()}
+              className="mx-2 px-4 py-2 bg-green-500 text-white hover:bg-green-700 rounded-md shadow-md"
+            >
+              Sí
+            </button>
+            <button
+              onClick={() => setOpenDialog(false)}
+              className="mx-2 px-4 py-2 bg-red-500 text-white hover:bg-red-700 rounded-md shadow-md"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </Dialog>
     </>
   );
 };

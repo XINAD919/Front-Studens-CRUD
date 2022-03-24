@@ -1,6 +1,6 @@
 import axios from "axios";
-// const defaulUrl = "https://back-crud.herokuapp.com/students/";
-const defaulUrl = "http://localhost:4000/students/";
+const defaulUrl = "https://back-crud.herokuapp.com/students/";
+// const defaulUrl = "http://localhost:4000/students/";
 
 // GET ALL STUDENTS
 export const getStudents = async (succesCallback, errorCallback) => {
@@ -64,7 +64,7 @@ export const updateStudent = async (
 export const deleteStudent = async (id, succesCallback, errorCallback) => {
   const options = {
     method: "DELETE",
-    url: `${defaulUrl}${id}/delete`,
+    url: `${defaulUrl}student/${id}/delete`,
     headers: { "Content-Type": "application/json" },
   };
   await axios.request(options).then(succesCallback).catch(errorCallback);

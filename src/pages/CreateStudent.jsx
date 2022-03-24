@@ -1,13 +1,9 @@
 import React, { useState, useRef } from "react";
-import Form from "../components/Form.jsx";
-import Loading from "../components/Loading.jsx";
 import Back from "../components/Back.jsx";
 import { createStudent } from "../utils/api.js";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 const CreateStudent = () => {
   const [data, setData] = useState({});
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const form = useRef(null);
 
@@ -34,9 +30,7 @@ const CreateStudent = () => {
     );
   };
 
-  if (loading) {
-    return <Loading />;
-  }
+
 
   return (
     <>
