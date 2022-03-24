@@ -64,7 +64,7 @@ const StudentEdit = () => {
   };
   return (
     <>
-      <div className="flex justify-between px-4">
+      <div className="flex justify-between px-4 py-4">
         <Back url={"/student-list"} />
         <Tooltip title="Eliminar" arrow>
           <i

@@ -34,7 +34,7 @@ const CreateStudent = () => {
 
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto py-4">
         <Back url={"/student-list"} />
         <form
           className=""

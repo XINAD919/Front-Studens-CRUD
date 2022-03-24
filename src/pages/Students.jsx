@@ -21,7 +21,7 @@ const Students = () => {
   }, []);
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto py-4">
       <div className="flex flex-col">
         <h1 className="self-center font-semibold text-2xl">
           Lista de estudiantes

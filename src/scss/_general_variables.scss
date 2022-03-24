@@ -2,21 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-
 ::-webkit-scrollbar-thumb {
   background: #9ca3af;
   border-radius: 50px;
 }
-
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-  .fondo {
-    background: url("../assets/img/stars.svg"), #1b1b25;
-  }
+.fondo {
+  background: url("../assets/img/stars.svg"), #1b1b25;
+}
