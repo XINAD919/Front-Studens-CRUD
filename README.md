@@ -1,6 +1,6 @@
 # Frontend de CRUD Students
 
-Este es el frontend desarrollado en React.js y Tailwind CSS para interactuar con el backend CRUD de personas o estudiantes en una base de datos MongoDB en la nube.
+Este es el frontend desarrollado en React.js y Tailwind CSS para interactuar con el backend CRUD de estudiantes en una base de datos MongoDB en la nube.
 
 ## Requisitos previos
 
